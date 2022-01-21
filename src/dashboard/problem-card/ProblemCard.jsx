@@ -32,21 +32,30 @@ const ProjectCard = () => {
         <p className={problemCard.Date}>Updated on {updatedOn}</p>
       </div>
       <div className={problemCard.RightDiv}>
-        {isSolved ? (
-          <p className={problemCard.Solved}>Solved</p>
-        ) : (
-          <p className={problemCard.NotSolved}>Not Solved Yet</p>
-        )}
-        <div>
-          <a href="deevanshu.dev" className={problemCard.Link}>
+        <div className={problemCard.SolvedDiv}>
+          {isSolved ? (
+            <p className={problemCard.Solved}>Solved</p>
+          ) : (
+            <p className={problemCard.NotSolved}>Not Solved Yet</p>
+          )}
+        </div>
+
+        <div className={problemCard.BottomDiv}>
+          <a
+            href="deevanshu.dev"
+            className={problemCard.Link + " " + problemCard.DetailsLink}
+          >
             View details
           </a>
-          <div>
+          <div className={problemCard.Attempt}>
             <img
               src={platform === "leetcode" ? "icons/leetcode.svg" : ""}
               alt="platform_img"
             />
-            <a href="deevanshu.dev" className={problemCard.Link}>
+            <a
+              href="deevanshu.dev"
+              className={problemCard.Link + " " + problemCard.AttemptLink}
+            >
               Attempt Problem
             </a>
           </div>
