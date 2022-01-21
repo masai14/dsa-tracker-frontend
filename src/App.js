@@ -1,10 +1,12 @@
 import "./App.css";
-import projectCard from "./project-cards/projectCard";
+import ProjectCard from "./dashboard/problem-card/ProblemCard";
 
 function App() {
   return (
     <div className="App">
-      <projectCard />
+
+      <ProjectCard />
+
     </div>
   );
 }

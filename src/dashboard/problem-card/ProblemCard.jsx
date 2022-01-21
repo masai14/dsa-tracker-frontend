@@ -4,7 +4,7 @@ const difficulty = "deev";
 const platform = "deev";
 const isSolved = "deev";
 const updatedOn = "deev";
-const projectCard = () => {
+const ProjectCard = () => {
   return (
     <>
       hello
@@ -24,4 +24,4 @@ const projectCard = () => {
   );
 };
 
-export default projectCard;
+export default ProjectCard;
