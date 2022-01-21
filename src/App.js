@@ -1,7 +1,8 @@
 import "./App.css";
+import { DashboardTwo } from "./Components/Dashboard-2/dashboard-2";
 
 function App() {
-  return <div className="App">Hello World</div>;
+  return <DashboardTwo></DashboardTwo>;
 }
 
 export default App;
