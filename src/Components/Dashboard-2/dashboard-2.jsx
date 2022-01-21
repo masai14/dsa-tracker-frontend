@@ -5,7 +5,7 @@ export const DashboardTwo = () => {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 3%;
     width: 60vw;
-    height: 80vw;
+    height: 80vh;
     padding: 20px;
     border-radius: 0.4%;
   `;
@@ -38,6 +38,28 @@ export const DashboardTwo = () => {
     display: inline-block;
     color: #ff2d55;
   `;
+  const UpdateStatus = styled.div`
+    font-size: 16px;
+
+    line-height: 22px;
+
+    color: #515151;
+    margin-top: 10px;
+  `;
+
+  const MainContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 30px;
+    div {
+      background: #c4c4c4;
+      height: 45vh;
+
+      width: 25vw;
+    }
+  `;
 
   return (
     <MainBox>
@@ -48,6 +70,11 @@ export const DashboardTwo = () => {
           Difficulty Level: <DifficultyLevel>Hard</DifficultyLevel>
         </SubHeading2>
       </div>
+      <UpdateStatus>Updated on 23/1/22</UpdateStatus>
+      <MainContainer>
+        <div></div>
+        <div></div>
+      </MainContainer>
     </MainBox>
   );
 };
