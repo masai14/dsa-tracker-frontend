@@ -1,10 +1,10 @@
 import "./App.css";
-import ProjectCard from "./dashboard/problem-card/ProblemCard";
+import Dashboard from "./dashboard/Dashboard";
 
 function App() {
   return (
     <div className="App">
-      <ProjectCard />
+      <Dashboard />
     </div>
   );
 }

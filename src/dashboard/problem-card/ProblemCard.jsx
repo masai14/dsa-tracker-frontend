@@ -1,12 +1,13 @@
 import problemCard from "./ProblemCard.module.css";
 
-const title = "Title";
-const topic = "Topic Name";
-const difficulty = "Hard";
-const platform = "leetcode";
-const isSolved = false;
-const updatedOn = "2020-05-05";
-const ProjectCard = () => {
+const ProblemCard = ({
+  title,
+  topic,
+  difficulty,
+  platform,
+  isSolved,
+  updatedOn,
+}) => {
   return (
     <div className={problemCard.Container}>
       <div className={problemCard.LeftDiv}>
@@ -65,4 +66,4 @@ const ProjectCard = () => {
   );
 };
 
-export default ProjectCard;
+export default ProblemCard;
