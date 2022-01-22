@@ -15,14 +15,14 @@ const ProblemCard = ({ title, topic, difficulty, platform, solved, updatedAt }) 
             Difficulty Level:{" "}
             <span
               className={
-                difficulty === "Hard"
+                difficulty === "hard"
                   ? problemCard.Hard
-                  : difficulty === "Medium"
+                  : difficulty === "medium"
                     ? problemCard.Medium
                     : problemCard.Easy
               }
             >
-              {difficulty}
+              {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
             </span>
           </p>
         </div>
