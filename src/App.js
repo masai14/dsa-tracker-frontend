@@ -1,4 +1,5 @@
 import "./App.css";
+import Login from "./Components/LoginPage.jsx"
 // import ProjectCard from "./dashboard/problem-card/ProblemCard";
 import { useState, useEffect } from 'react'
 import Dashboard from "./dashboard/Dashboard";
@@ -32,9 +33,13 @@ function App() {
     <div className="App">
 
       <Dashboard datas={datas} />
-
+<Login/>
     </div>
   );
+
+
+
+
 }
 
 export default App;
