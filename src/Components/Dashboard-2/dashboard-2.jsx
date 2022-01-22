@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
 export const DashboardTwo = () => {
   const MainBox = styled.div`
@@ -21,6 +24,7 @@ export const DashboardTwo = () => {
     font-weight: 600;
     line-height: 19.07px;
     display: inline-block;
+    text-transform: capitalize;
     margin-right: 10px;
   `;
   const SubHeading2 = styled.div`
@@ -37,6 +41,7 @@ export const DashboardTwo = () => {
     line-height: 19px;
     display: inline-block;
     color: #ff2d55;
+    text-transform: capitalize;
   `;
   const UpdateStatus = styled.div`
     font-size: 16px;
@@ -61,16 +66,29 @@ export const DashboardTwo = () => {
     }
   `;
 
+  const [queData, setQueData] = useState({});
+  useEffect(() => {
+    getQuestion();
+  }, []);
+  async function getQuestion() {
+    const { data } = await axios.get(
+      "https://dsa-tracker-api.herokuapp.com/question/61eb9b9ae96ae1000487cfdc"
+    );
+    console.log("data:", data);
+    data.updatedAt = moment(data.updatedAt).format("DD MMM YYYY");
+    setQueData(data);
+  }
   return (
     <MainBox>
-      <Heading>Find the Running Median</Heading>
+      <Heading>{queData.title}</Heading>
       <div>
-        <SubHeading1>{"Data Structure ( Heap )"}</SubHeading1>
+        <SubHeading1>{queData.topic}</SubHeading1>
         <SubHeading2>
-          Difficulty Level: <DifficultyLevel>Hard</DifficultyLevel>
+          Difficulty Level:{" "}
+          <DifficultyLevel> {queData.difficulty}</DifficultyLevel>
         </SubHeading2>
       </div>
-      <UpdateStatus>Updated on 23/1/22</UpdateStatus>
+      <UpdateStatus>Updated on {queData.updatedAt}</UpdateStatus>
       <MainContainer>
         <div></div>
         <div></div>
