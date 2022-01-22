@@ -1,6 +1,23 @@
 import ProblemCard from "./problem-card/ProblemCard";
+import { useState } from "react";
+
+// const initialState = {
+
+// }
+
+// const [details, setDetails] = useState(initialState)
+
+// const handleDetails = (e) => {
+//     const { name, value } = e.target;
+
+//     setDetails({
+//         ...details,
+//         [name]: value
+//     })
 
 
+//     console.log(details);
+// }
 
 export default function Dashboard({ datas }) {
     console.log("this is the array", datas);
