@@ -8,8 +8,7 @@ const Navbar = ({ username }) => {
       </div>
       <div className={navbar.Auth}>
         <img src="icons/user.png" alt="logo" />
-
-        <p className={navbar.Login}>{username === true ? username : "Login"}</p>
+        <p className={navbar.Login}>username</p>
       </div>
     </div>
   );
