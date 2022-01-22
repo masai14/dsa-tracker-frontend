@@ -1,14 +1,23 @@
 import ProblemCard from "./problem-card/ProblemCard";
 import Navbar from "../navbar/Navbar";
 import dashboard from "./Dashboard.module.css";
+import AddProblem from "./add-problem/AddProblem";
 
 export default function Dashboard() {
   return (
     <>
       <Navbar />
       <div className={dashboard.Container}>
-        <div></div>
-        <div className="App">
+        <div className={dashboard.Filters}>
+          <div className={dashboard.FilterSort}>
+            <p>Sort by:</p>
+            <select>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+        <div className={dashboard.Problems}>
+          <AddProblem />
           <ProblemCard
             title="Title"
             topic="Topic Name"
