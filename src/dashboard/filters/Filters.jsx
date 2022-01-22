@@ -1,6 +1,6 @@
 import filters from "./Filters.module.css";
 
-const Filters = () => {
+const Filters = ({ handleMed, handleHard, handleEasy, handleSolved, handleUnsolved }) => {
   return (
     <div>
       <div className={filters.FilterSort}>
@@ -19,15 +19,15 @@ const Filters = () => {
       <div className={filters.Checkbox}>
         <p>Difficulty:</p>
         <div>
-          <input type="checkbox" id="easy" name="easy" value="easy" />
+          <input type="checkbox" id="easy" name="easy" value="easy" onChange={handleEasy} />
           <label for="easy">Easy</label>
         </div>
         <div>
-          <input type="checkbox" id="medium" name="medium" value="medium" />
+          <input type="checkbox" id="medium" name="medium" value="medium" onChange={handleMed} />
           <label for="medium">Medium</label>
         </div>
         <div>
-          <input type="checkbox" id="hard" name="hard" value="hard" />
+          <input type="checkbox" id="hard" name="hard" value="hard" onChange={handleHard} />
           <label for="hard">Hard</label>
         </div>
       </div>
@@ -48,16 +48,16 @@ const Filters = () => {
       </div>
       <div className={filters.Checkbox}>
         <p>Status:</p>
-        <div>
-          <input type="radio" id="all" name="status" value="all" checked />
+        {/* <div>
+          <input type="checkbox" id="all" name="status" value="all" onChange={clear} />
           <label for="all">All</label>
-        </div>
+        </div> */}
         <div>
-          <input type="radio" id="solved" name="status" value="solved" />
+          <input type="checkbox" id="solved" name="status" value="solved" onChange={handleSolved} />
           <label for="solved">Solved</label>
         </div>
         <div>
-          <input type="radio" id="unsolved" name="status" value="unsolved" />
+          <input type="checkbox" id="unsolved" name="status" value="unsolved" onChange={handleUnsolved} />
           <label for="unsolved">Unsolved</label>
         </div>
       </div>
