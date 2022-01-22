@@ -25,7 +25,7 @@ import Filters from "./filters/Filters";
 
 export default function Dashboard({ datas }) {
   return (
-    <>
+    <div>
       <Navbar />
       <div className={dashboard.Container}>
         <div className={dashboard.Filters}>
@@ -60,6 +60,6 @@ export default function Dashboard({ datas }) {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
