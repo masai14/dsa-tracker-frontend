@@ -1,0 +1,45 @@
+.FilterSort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 25px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+}
+
+.Select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 37px;
+  border-radius: 8px;
+  background: #fff;
+  /* box-shadow: 0px 1px 16px rgba(13, 41, 62, 0.16); */
+  border: none;
+}
+.Checkbox {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px 25px;
+  /* margin-top: -30px; */
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 25px;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+}
+/* .Select::-ms-expand {
+  background: #f7ffff;
+} */
+
+.Footer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 70px 25px;
+  border-bottom: 1px solid #e6e6e6;
+  bottom: 0;
+}
