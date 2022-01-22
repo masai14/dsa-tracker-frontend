@@ -1,12 +1,8 @@
 import "./App.css";
-import ProjectCard from "./dashboard/problem-card/ProblemCard";
+// import ProjectCard from "./dashboard/problem-card/ProblemCard";
 import { useState, useEffect } from 'react'
+import Dashboard from "./dashboard/Dashboard";
 
-
-
-
-
-// let arr = fetchData()
 
 function App() {
   const [datas, setDatas] = useState([]);
@@ -30,14 +26,12 @@ function App() {
 
 
   }, [])
-  // setDatas(arr)
+
 
   return (
     <div className="App">
 
-
-      <ProjectCard datas={datas} />
-
+      <Dashboard datas={datas} />
 
     </div>
   );
