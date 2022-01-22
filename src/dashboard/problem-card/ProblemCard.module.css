@@ -103,20 +103,19 @@
 .CentreDiv {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
 }
 
 .Link {
   text-decoration: none;
-  color: #1072b9;
+  color: #3b89c2;
 }
 
 .Attempt {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1072b9;
+  border: 1px solid rgba(59, 137, 194, 0.64);
   border-radius: 8px;
   padding: 8px;
 }
