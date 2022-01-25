@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "../Components/LoginPage";
+import Login from "../LoginPage/LoginPage";
 import { FetchDashboard } from "./FetchDashboard";
 
 const MainRoute = () => {
