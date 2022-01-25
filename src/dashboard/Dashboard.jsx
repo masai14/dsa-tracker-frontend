@@ -1,27 +1,4 @@
 import ProblemCard from "./problem-card/ProblemCard";
-// import { useState } from "react";
-
-// const initialState = {
-
-// }
-
-// const [details, setDetails] = useState(initialState)
-
-// const handleDetails = (e) => {
-//     const { name, value } = e.target;
-
-//     setDetails({
-//         ...details,
-//         [name]: value
-//     })
-
-
-//     console.log(details);
-// }
-
-
-
-
 import Navbar from "../navbar/Navbar";
 import dashboard from "./Dashboard.module.css";
 import AddProblem from "./add-problem/AddProblem";
@@ -36,6 +13,8 @@ export default function Dashboard({ datas }) {
     const [hard, setHard] = useState(false);
     const [solved, setSolved] = useState(false);
     const [unsolved, setUnsolved] = useState(false);
+    const [sort, setSort] = useState(null)
+    // const [sortTime, setSortTime] = useState(null)
 
     function handleEasy() {
         setEasy(!easy)
@@ -52,6 +31,16 @@ export default function Dashboard({ datas }) {
     function handleUnsolved() {
         setUnsolved(!unsolved);
     }
+    function handleSort(value) {
+        setSort(value)
+        console.log(value);
+
+    }
+
+    function reverse() {
+        datas.reverse()
+    }
+
 
 
 
@@ -62,15 +51,12 @@ export default function Dashboard({ datas }) {
             <div className={dashboard.Container}>
                 <div className={dashboard.Filters}>
                     <div className={dashboard.FilterSort}>
-                        <Filters handleHard={handleHard} handleMed={handleMed} handleEasy={handleEasy} handleSolved={handleSolved} handleUnsolved={handleUnsolved} />
-                        {/* <p>Sort by:</p>
-                        <select>
-                            <option value="name">Name</option>
-                        </select> */}
+                        <Filters handleHard={handleHard} handleMed={handleMed} handleEasy={handleEasy} handleSolved={handleSolved} handleUnsolved={handleUnsolved} handleSort={handleSort} />
                     </div>
                 </div>
                 <div className={dashboard.Problems}>
                     <AddProblem />
+
 
                     {
                         datas
@@ -80,7 +66,9 @@ export default function Dashboard({ datas }) {
                             .filter(function (el) {
                                 return solved && unsolved ? true : solved ? el.solved === true : unsolved ? el.solved === false : true
                             })
-
+                            .sort(function (a, b) {
+                                return sort == 3 ? a.difficulty - b.difficulty : sort == 4 ? b.difficulty - a.difficulty : sort == 1 ? b.updatedAt.localeCompare(a.updatedAt) : sort == 2 ? a.updatedAt.localeCompare(b.updated) : a == b;
+                            })
                             .map(function (data) {
                                 let { title, topic, difficulty, platform, solved, updatedAt } = data;
 

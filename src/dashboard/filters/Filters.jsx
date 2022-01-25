@@ -1,19 +1,21 @@
 import filters from "./Filters.module.css";
 
-const Filters = ({ handleMed, handleHard, handleEasy, handleSolved, handleUnsolved }) => {
+const Filters = ({ handleMed, handleHard, handleEasy, handleSolved, handleUnsolved, handleSort }) => {
   return (
     <div>
       <div className={filters.FilterSort}>
         <p>Sort by:</p>
-        <select className={filters.Select}>
-          <option value="" default>
+        <select className={filters.Select} onChange={function (e) {
+          handleSort(e.target.value)
+        }}>
+          <option value="null">
             {" "}
             -- select --{" "}
           </option>
-          <option value="">Latest First</option>
-          <option value="">Oldest First</option>
-          <option value="">Easy to Hard</option>
-          <option value="">Hard to Easy</option>
+          <option value="1" >Latest First</option>
+          <option value="2" >Oldest First</option>
+          <option value="3">Easy to Hard</option>
+          <option value="4" >Hard to Easy</option>
         </select>
       </div>
       <div className={filters.Checkbox}>
