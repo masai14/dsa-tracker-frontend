@@ -1,5 +1,5 @@
 import "./App.css";
-import Login from "./Components/LoginPage.jsx"
+import Login from "./LoginPage/LoginPage.jsx"
 // import ProjectCard from "./dashboard/problem-card/ProblemCard";
 import { useState, useEffect } from 'react'
 import Dashboard from "./dashboard/Dashboard";

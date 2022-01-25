@@ -76,39 +76,40 @@ const Login = () => {
 
 
     return (
+        <div className={ LoginPageCSS.body}>
         <div className={LoginPageCSS.container} id="container">
 
             {/* sign up container */}
             <div className={`${LoginPageCSS.formContainer} ${LoginPageCSS.signUpContainer}`}>
-                <form onSubmit={(event) => { event.preventDefault();}}>
-                    <h1>Create Account</h1>
+                <form className={LoginPageCSS.form} onSubmit={(event) => { event.preventDefault();}}>
+                    <h1 className={LoginPageCSS.h1}>Create Account</h1>
                     <div className={LoginPageCSS.socialContainer}>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><FaFacebookF/></a>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><BsGoogle/></a>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><FaLinkedinIn/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><FaFacebookF/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><BsGoogle/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><FaLinkedinIn/></a>
                     </div>
-                    <span>or use your email for registration</span>
-                    <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder="Name" />
-                    <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email" />
-                    <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
-                    <button onClick={() => { signUp() }}>Sign Up</button>
+                    <span className={LoginPageCSS.span}>or use your email for registration</span>
+                    <input className={LoginPageCSS.input} value={name} onChange={(e) => { setName(e.target.value) }} type="text" placeholder="Name" />
+                    <input className={LoginPageCSS.input} value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" placeholder="Email" />
+                    <input className={LoginPageCSS.input} value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" placeholder="Password" />
+                    <button className={LoginPageCSS.button} onClick={() => { signUp() }}>Sign Up</button>
                 </form>
             </div>
 
             {/* Sign in container */}
             <div className={`${LoginPageCSS.formContainer} ${LoginPageCSS.signInContainer}`}>
-                <form onSubmit={(event) => { event.preventDefault();}}>
-                    <h1>Sign in</h1>
+                <form className={LoginPageCSS.form} onSubmit={(event) => { event.preventDefault();}}>
+                    <h1 className={LoginPageCSS.h1}>Sign in</h1>
                     <div className={LoginPageCSS.socialContainer}>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><FaFacebookF/></a>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><BsGoogle/></a>
-                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={LoginPageCSS.social}><FaLinkedinIn/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><FaFacebookF/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><BsGoogle/></a>
+                        <a target="_blank" rel="noreferrer" href="https://www.google.co.in/" className={`${LoginPageCSS.social} ${LoginPageCSS.a}`}><FaLinkedinIn/></a>
                     </div>
-                    <span>or use your account</span>
-                    <input value={inEmail} onChange={(e) => { setInEmail(e.target.value) }} type="email" placeholder="Email" />
-                    <input value={inPassword} onChange={(e) => { setInPassword(e.target.value) }} type="password" placeholder="Password" />
-                    <a target="_blank" rel="noreferrer" href="https://www.google.co.in/">Forgot your password?</a>
-                    <button onClick={() => { signIn() }}>Sign In</button>
+                    <span className={LoginPageCSS.span}>or use your account</span>
+                    <input className={LoginPageCSS.input} value={inEmail} onChange={(e) => { setInEmail(e.target.value) }} type="email" placeholder="Email" />
+                    <input className={LoginPageCSS.input} value={inPassword} onChange={(e) => { setInPassword(e.target.value) }} type="password" placeholder="Password" />
+                        <a className={LoginPageCSS.a} target="_blank" rel="noreferrer" href="https://www.google.co.in/">Forgot your password?</a>
+                    <button className={LoginPageCSS.button} onClick={() => { signIn() }}>Sign In</button>
                 </form>
             </div>
 
@@ -116,10 +117,10 @@ const Login = () => {
             <div className={LoginPageCSS.overlayContainer}>
                 <div className={LoginPageCSS.overlay}>
                     <div className={`${LoginPageCSS.overlayPanel} ${LoginPageCSS.overlayLeft}`}>
-                        <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
-                        <button
-                            className={LoginPageCSS.ghost}
+                        <h1 className={LoginPageCSS.h1}>Welcome Back!</h1>
+                        <p className={LoginPageCSS.p}>To keep connected with us please login with your personal info</p>
+                            <button className={`${LoginPageCSS.button}
+                            ${LoginPageCSS.ghost}`}
                             id="signIn"
                             onClick={() => {
                             const container = document.getElementById('container');
@@ -128,10 +129,10 @@ const Login = () => {
                         >Sign In</button>
                     </div>
                     <div className={`${LoginPageCSS.overlayPanel} ${LoginPageCSS.overlayRight}`}>
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
-                        <button
-                            className={LoginPageCSS.ghost}
+                        <h1 className={LoginPageCSS.h1}>Hello, Friend!</h1>
+                        <p className={LoginPageCSS.p}>Enter your personal details and start journey with us</p>
+                            <button className={`${LoginPageCSS.button}
+                            ${LoginPageCSS.ghost}`}
                             id="signUp"
                             onClick={() => {
                             const container = document.getElementById('container');
@@ -141,7 +142,8 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+            </div>
     );
 }
 
