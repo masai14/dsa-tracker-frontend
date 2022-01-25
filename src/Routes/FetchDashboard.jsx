@@ -25,25 +25,3 @@ export const FetchDashboard = () => {
     </div>
   );
 };
-
-// import { Link } from "react-router-dom";
-
-// const links = [
-//   { to: "/", title: "Home" },
-//   { to: "/dashboard", title: "Dashboard" },
-//   { to: "/problem", title: "Problem" },
-// ];
-
-// const Navbar = () => {
-//   return (
-//     <div>
-//       {links.map(({ to, title }) => (
-//         <div>
-//           <Link to={to}>{title}</Link>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export { Navbar };
