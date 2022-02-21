@@ -1,0 +1,25 @@
+.Container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  align-items: center;
+  color: #1a1a1a;
+  width: 1144px;
+}
+
+.Button {
+  color: #fff;
+  background: #1072b9;
+  border-radius: 8px;
+  width: 240px;
+  height: 57px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button:hover {
+  background: #0f6ca8;
+  cursor: pointer;
+}
