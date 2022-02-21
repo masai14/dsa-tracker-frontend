@@ -1,0 +1,198 @@
+/* setting font */
+* {
+    font-family: "open sans", sans-serif;
+}
+
+/* container which contains add problem button */
+.container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+
+/* add problem button */
+#add_problem_btn {
+    margin: 20px;
+    width: 230px;
+    border-radius: 6px;
+    height: 50px;
+    float: right;
+    background-color: rgb(77, 92, 179);
+    border: none;
+    color: white;
+    padding: 12px;
+    font-size: larger;
+    outline: none;
+}
+
+#add_problem_btn i {
+    margin-right: 15px;
+}
+
+#add_problem_btn:hover {
+    cursor: pointer;
+    background-color: rgb(57, 67, 128);
+}
+
+
+/* modal */
+.create_question_form_container {
+    width: 40%;
+    height: 95%;
+    position: absolute;
+    margin: 30px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    /* display: none; */
+    overflow-y: scroll;
+}
+
+.top_row {
+    display: flex;
+    height: 20px;
+    justify-content: flex-end;
+}
+
+.top_row i {
+    margin: 15px;
+    font-size: larger;
+    color: silver;
+}
+
+.top_row i:hover {
+    cursor: pointer;
+    color: rgb(124, 124, 124);
+}
+
+.mid_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mid_row h2 {
+    margin: 5px;
+    color: rgb(71, 71, 71);
+}
+
+.mid_row p {
+    margin: 0;
+    margin-bottom: 5px;
+    color: rgb(116, 116, 116);
+}
+
+/* form */
+.create_question_form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create_question_form textarea {
+    resize: vertical;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+
+.create_question_form p {
+    font-size: smaller;
+}
+
+.create_question_form label {
+    font-size: small;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+}
+
+.form_group input[type="text"] {
+    width: 100%;
+    height: 20px;
+    border-radius: 6px;
+    border: none;
+    padding: 6px;
+    outline: none;
+}
+
+.form_group select {
+    width: 50%;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    padding: 6px;
+    outline: none;
+    font-size: small;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form_group_checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form_group_checkbox label {
+    font-size: smaller;
+}
+
+.solved_checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: smaller;
+}
+
+.fav_checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    font-size: smaller;
+}
+
+.form_group_submit {
+    display: flex;
+    justify-content: center;
+}
+
+.form_group_submit input {
+    width: 40%;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    padding: 6px;
+    outline: none;
+    font-size: larger;
+    background-color: rgb(77, 92, 179);
+    color: white;
+    text-align: center;
+}
+
+.form_group_submit input:hover {
+    cursor: pointer;
+    background-color: rgb(57, 67, 128);
+}
+
+/* scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+}
