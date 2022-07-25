@@ -1,0 +1,3 @@
+- favorite icon each card
+- question count in each filter
+- gather icons for platforms
