@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaFacebookF } from "react-icons/fa";
 import { BsGoogle } from "react-icons/bs";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useState, useContext } from "react";
 import AuthPageStyles from "./Authorization.module.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../components/Loader';
+import { userCheck } from '../../utils/userCheck';
+import { getQuestions, addUserToken } from "../../redux/actions";
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Authorization = () => {
   // const { handleUserId } = useContext();
+
+  const user = useSelector(store => store.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -34,15 +48,28 @@ export const Authorization = () => {
       body: raw,
     };
 
-    fetch("https://dsa-tracker-api.herokuapp.com/user/", requestOptions)
+    fetch("http://localhost:2345/register/", requestOptions)
       .then(response => response.json())
       .then((result) => {
-        // console.log("result:", result);
-        localStorage.setItem("userId", result._id);
+        toast(result.message);
+        if (result.message.startsWith("User")) {
+          document.getElementById("signIn").click();
+        } else if (result.message.startsWith("Password") || result.message.startsWith("Signup")) {
+
+        } else {
+          localStorage.setItem("userTokenDSA", JSON.stringify(result.token));
+          dispatch(addUserToken(result.token));
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            navigate("/");
+          }, 3000)
+        }
         // handleUserId();
       })
-      .catch(error => console.log('error', error));
-
+      .catch(error => {
+        toast("Unable to signup at the moment");
+      });
   }
 
   const signIn = () => {
@@ -62,21 +89,57 @@ export const Authorization = () => {
       body: raw,
     };
 
-    fetch("https://dsa-tracker-api.herokuapp.com/user/auth/login/", requestOptions)
+    fetch("http://localhost:2345/login/", requestOptions)
       .then(response => response.json())
       .then((result) => {
-        // console.log("result:", result);
-        localStorage.setItem("userId", result._id);
-        // handleUserId();
-      })
-      .catch(error => console.log('error', error));
+        toast(result.message);
+        if (result.message.startsWith("It")) {
+          document.getElementById("signUp").click();
+        } else if (result.message.startsWith("Please") || result.message.startsWith("SignIn")) {
 
+        } else {
+          localStorage.setItem("userTokenDSA", JSON.stringify(result.token));
+          dispatch(addUserToken(result.token));
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            navigate("/");
+          }, 3000)
+        }
+      })
+      .catch(error => {
+        toast("Unable to login at the moment");
+      });
   }
 
+  useEffect(() => {
+    setIsLoading(true);
+    if (user) {
+      fetch("http://localhost:2345/user/check", {
+        method: "GET",
+        headers: {
+          "authorization": `Bearer ${user}`
+        }
+      }).then(res => res.json()).then(res => {
+        if (res.message === true) {
+          navigate("/");
+        } else {
+          setIsLoading(false);
+        }
+      }).catch((err) => {
+        // console.log(err.message);
+      })
+    } else {
+      setIsLoading(false);
+    }
 
-  return (
-    // <div className='bg-[#f6f5f7] flex justify-center items-center flex-col h-screen -mt-[1.25rem] mx-0 mb-[3.125rem] box-border'>
-    <section className='flex justify-center items-center bg-[#f6f5f7] m-auto h-screen'>
+    return () => {
+      setIsLoading(false);
+    }
+  }, []);
+
+  return (<>{
+    isLoading ? <Loader /> : <section className='flex justify-center items-center bg-[#f6f5f7] m-auto h-screen'>
       <div className={AuthPageStyles.authContainer} id="container">
 
         {/* sign up container */}
@@ -142,5 +205,7 @@ export const Authorization = () => {
         </div>
       </div>
     </section>
-  );
+  }
+    <ToastContainer />
+  </>);
 }

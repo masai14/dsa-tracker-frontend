@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Navbar, Footer } from '../../components';
 import { BsLaptop } from "react-icons/bs";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import { useSelector } from 'react-redux';
 
 export const Question = () => {//{ title, topic, link, difficulty, solved, platform }
+  const { user } = useSelector(store => store.user);
   const [title, topic, description, link, platform, difficulty, intuition, code, solved, isFav, isPublic] = [
     "Search in sorted and Rotated Array",
     "Array,Binary Search",
@@ -19,6 +21,7 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
   ];
 
   const [accordion, setAccordion] = useState(false);
+
   return (
     <div>
       <Navbar />
