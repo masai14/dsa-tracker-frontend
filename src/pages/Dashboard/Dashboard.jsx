@@ -126,7 +126,7 @@ export const Dashboard = () => {
     }
   }, []);
 
-  useEffect(() => { 
+  useEffect(() => {
     setData([...questions]);
   }, [questions])
 
@@ -135,7 +135,7 @@ export const Dashboard = () => {
       <section className='w-full'>
         <Navbar />
         {modalActive && <Modal />}
-        <div className='flex mx-auto flex-wrap botto'>
+        <div className='flex mx-auto flex-wrap'>
           <Sidebar platforms={platforms} />
           <div className='ml-[19rem] mt-16 mb-10 w-full mx-4 flex flex-col px-4'>
             <div id="header" className='flex justify-between py-4 my-8'>
@@ -145,9 +145,11 @@ export const Dashboard = () => {
                 <span>Add a new Problem</span>
               </button>
             </div>
-            {data.length && data.map((item, index) => {
-              return <Card key={index} {...item} />
-            })}
+            <div className='min-h-screen'>
+              {data.length && data.map((item, index) => {
+                return <Card key={index} {...item} />
+              })}
+            </div>
             <div className='flex flex-row gap-3 mt-4 text-xl justify-between w-[6rem]'>
               <div>
                 <button type='button' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} className="pt-[0.30rem] disabled:opacity-20">
