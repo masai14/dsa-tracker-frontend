@@ -18,7 +18,7 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
     try {
       dispatch(getQuestion(user, id));
     } catch (err) {
-      console.log("question", err.message);
+      // console.log("question", err.message);
     }
     setTimeout(() => {
       setIsLoading(false);
