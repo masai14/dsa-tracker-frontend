@@ -73,17 +73,18 @@ export const getQuestions = (token, queryObj) => async (dispatch) => {
         generatedQuery += "sortby=" + queryObj.sortBy;
     }
     // console.log(generatedQuery);
-    let res = await axios.get(`http://localhost:2345/user/questions${generatedQuery}`, {
+    let res = await axios.get(`https://dsa-tracker-api.herokuapp.com/api/user/questions${generatedQuery}`, {
         headers: {
             'authorization': `Bearer ${token}`
         }
     })
+    console.log(res.data.platforms)
     dispatch({ type: GET_QUESTIONS, payload: res.data });
 }
 
 export const getQuestion = (token, id) => async (dispatch) => {
     try {
-        let res = await axios.get(`http://localhost:2345/question/${id}`, {
+        let res = await axios.get(`https://dsa-tracker-api.herokuapp.com/api/question/${id}`, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -98,7 +99,7 @@ export const postQuestion = (token, payload) => async (dispatch) => {
     // console.log(payload);
     try {
 
-        let res = await axios.post(`http://localhost:2345/question/`, {
+        let res = await axios.post(`https://dsa-tracker-api.herokuapp.com/api/question/`, {
             ...payload
         }, {
             headers: {
@@ -107,7 +108,7 @@ export const postQuestion = (token, payload) => async (dispatch) => {
         })
         // console.log(res);
 
-        let resp = await axios.get("http://localhost:2345/user/questions", {
+        let resp = await axios.get("https://dsa-tracker-api.herokuapp.com/api/user/questions", {
             headers: {
                 'authorization': `Bearer ${token}`
             }
@@ -124,7 +125,7 @@ export const updateQuestion = (token, id, payload) => async (dispatch) => {
     // console.log(payload);
     try {
 
-        let res = await axios.patch(`http://localhost:2345/question/${id}`, {
+        let res = await axios.patch(`https://dsa-tracker-api.herokuapp.com/api/question/${id}`, {
             ...payload
         }, {
             headers: {
@@ -133,7 +134,7 @@ export const updateQuestion = (token, id, payload) => async (dispatch) => {
         })
         // console.log(res);
 
-        // let resp = await axios.get("http://localhost:2345/user/questions", {
+        // let resp = await axios.get("https://dsa-tracker-api.herokuapp.com/api/user/questions", {
         //     headers: {
         //         'authorization': `Bearer ${token}`
         //     }
@@ -148,7 +149,7 @@ export const updateQuestion = (token, id, payload) => async (dispatch) => {
 }
 
 export const getUserDetails = (token) => async (dispatch) => {
-    let res = await axios.get("http://localhost:2345/user/details", {
+    let res = await axios.get("https://dsa-tracker-api.herokuapp.com/api/user/details", {
         headers: {
             'authorization': `Bearer ${token}`
         }
@@ -158,7 +159,7 @@ export const getUserDetails = (token) => async (dispatch) => {
 
 export const updateUserDetails = (token, id, payload) => async (dispatch) => {
     // console.log(id);
-    let res = await axios.patch(`http://localhost:2345/user/${id}`, {
+    let res = await axios.patch(`https://dsa-tracker-api.herokuapp.com/api/user/${id}`, {
         ...payload
     }, {
         headers: {
@@ -168,7 +169,7 @@ export const updateUserDetails = (token, id, payload) => async (dispatch) => {
 
     // console.log(res.data);
     dispatch({ type: GET_USER_DETAILS, payload: res.data });
-    let resp = await axios.get("http://localhost:2345/user/check", {
+    let resp = await axios.get("https://dsa-tracker-api.herokuapp.com/api/user/check", {
         headers: {
             "authorization": `Bearer ${token}`
         }

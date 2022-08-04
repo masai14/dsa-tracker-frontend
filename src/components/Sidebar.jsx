@@ -53,7 +53,7 @@ export const Sidebar = ({ queryObj, setQueryObj }) => {
 
         <h2 className='text-xl p-2.5 -mt-2'>Platform</h2>
         <ul className='text-base'>
-          {platforms.length && platforms.map((item, index) => {
+          {platforms && platforms.map((item, index) => {
             return <li key={index} className='flex gap-4 items-center p-2 px-8 font-normal text-gray-900 rounded-lg'>
               <input onChange={handleChange} type="checkbox" name={"platform " + item._id.toLowerCase()} id={`${item._id.toLowerCase()}Check`} />
               <label htmlFor={"platform " + item._id.toLowerCase()}>{item._id.length <= 3 ? item._id.toUpperCase() : item._id[0].toUpperCase() + item._id.substring(1).toLowerCase()}{"  "} ({item.count})</label>

@@ -27,8 +27,7 @@ export const Dashboard = () => {
     if (!user) {
       navigate("/auth");
     } else {
-      fetch("http://localhost:2345/user/check", {
-        method: "GET",
+      fetch("https://dsa-tracker-api.herokuapp.com/api/user/check", {
         headers: {
           "authorization": `Bearer ${user}`
         }
@@ -60,7 +59,7 @@ export const Dashboard = () => {
     </div> :
       <section className='w-full'>
         <Navbar />
-        {modalActive && <Modal setModalActive={ setModalActive} />}
+        {modalActive && <Modal setModalActive={setModalActive} />}
         <div className='flex mx-auto flex-wrap'>
           <Sidebar queryObj={queryObj} setQueryObj={setQueryObj} />
           <div className='ml-[19rem] mt-16 mb-10 w-full mx-4 flex flex-col px-4'>

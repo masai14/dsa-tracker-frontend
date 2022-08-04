@@ -48,7 +48,7 @@ export const Authorization = () => {
       body: raw,
     };
 
-    fetch("http://localhost:2345/register/", requestOptions)
+    fetch("https://dsa-tracker-api.herokuapp.com/api/register/", requestOptions)
       .then(response => response.json())
       .then((result) => {
         toast(result.message);
@@ -89,7 +89,7 @@ export const Authorization = () => {
       body: raw,
     };
 
-    fetch("http://localhost:2345/login/", requestOptions)
+    fetch("https://dsa-tracker-api.herokuapp.com/api/login/", requestOptions)
       .then(response => response.json())
       .then((result) => {
         toast(result.message);
@@ -115,7 +115,7 @@ export const Authorization = () => {
   useEffect(() => {
     setIsLoading(true);
     if (user) {
-      fetch("http://localhost:2345/user/check", {
+      fetch("https://dsa-tracker-api.herokuapp.com/api/user/check", {
         method: "GET",
         headers: {
           "authorization": `Bearer ${user}`

@@ -16,7 +16,7 @@ export const Navbar = () => {
     let inDebounce = null;
     return () => {
       if (searchQuery.length + 1 >= 3) {
-      // console.log(searchQuery.length);
+        // console.log(searchQuery.length);
         clearTimeout(inDebounce);
         inDebounce = setTimeout(() => {
           getData();
@@ -30,7 +30,7 @@ export const Navbar = () => {
 
   async function getData() {
     try {
-      let res = await axios.post("http://localhost:2345/question/search", {
+      let res = await axios.post("https://dsa-tracker-api.herokuapp.com/api/question/search", {
         key: searchQuery
       }, {
         headers: {
@@ -66,7 +66,7 @@ export const Navbar = () => {
               </div>
               <input type="text" id="search-navbar" name="searchBar" className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); searchDebounce()() }} />
               <div className='absolute bg-white w-full'>{searchData && searchData.map((el, i) => {
-                return <div className='border-b-2 p-2 cursor-pointer' key={el._id + i} onClick={() => { setSearchData([]); navigate(`/question/${el._id}`)}}>{el.title}</div>
+                return <div className='border-b-2 p-2 cursor-pointer' key={el._id + i} onClick={() => { setSearchData([]); navigate(`/question/${el._id}`) }}>{el.title}</div>
               })}</div>
             </div>
             <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">

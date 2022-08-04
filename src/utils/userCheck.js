@@ -1,5 +1,5 @@
 // export const userCheck = async (user) => {
-//     await fetch("http://localhost:2345/user/check", {
+//     await fetch("https://dsa-tracker-api.herokuapp.com/api/user/check", {
 //         method: "GET",
 //         headers: {
 //             "authorization": `Bearer ${user}`
@@ -16,7 +16,7 @@
 
 // export const userCheck = (user) => {
 //     return (async function (user) {
-//         await fetch("http://localhost:2345/user/check", {
+//         await fetch("https://dsa-tracker-api.herokuapp.com/api/user/check", {
 //             method: "GET",
 //             headers: {
 //                 "authorization": `Bearer ${user}`
