@@ -55,7 +55,9 @@ export const Dashboard = () => {
   }, [questions])
   // console.log("data:", data);
   return (<>
-    {isLoading ? <Loader /> :
+    {isLoading ? <div className='min-h-screen w-48 m-auto pt-64'>
+      <Loader width="w-48" height="h-48" />
+    </div> :
       <section className='w-full'>
         <Navbar />
         {modalActive && <Modal setModalActive={ setModalActive} />}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar } from '../../components';
+import { Navbar, Footer } from '../../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails, updateUserDetails } from "../../redux/actions";
 import { BiPencil } from "react-icons/bi";
@@ -50,7 +50,7 @@ export const UserProfile = () => {
       <Navbar />
       {/* <div className='flex mx-auto flex-wrap h-screen'> */}
       {/* <div className='mt-16 mb-10 w-full mx-4 flex flex-col px-4'> */}
-      <div className='container border mx-auto min-h-screen'>
+      <div className='container border border-slate-100 mx-auto min-h-screen bg-slate-100'>
         <div className='mt-16 p-16 mx-28'>
           <div className='flex flex-row gap-8'>
             <img src={avatar} alt="" className='h-96 w-96' />
@@ -148,6 +148,7 @@ export const UserProfile = () => {
       </div>
       {/* </div> */}
       {/* </div> */}
+      <Footer/>
     </section >
   )
 }

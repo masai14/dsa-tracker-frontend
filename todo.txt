@@ -1,5 +1,5 @@
 - favorite icon each card
 - question count in each filter
 - gather icons for platforms
-- adding logic 
-- redux implementation
+- Cloudinary image platform
+- Home Page for public questions

@@ -139,7 +139,9 @@ export const Authorization = () => {
   }, []);
 
   return (<>{
-    isLoading ? <Loader /> : <section className='flex justify-center items-center bg-[#f6f5f7] m-auto h-screen'>
+    isLoading ? <div className='min-h-screen w-48 m-auto pt-64'>
+      < Loader width="w-48" height="h-48" />
+    </div> : <section className='flex justify-center items-center bg-[#f6f5f7] m-auto h-screen'>
       <div className={AuthPageStyles.authContainer} id="container">
 
         {/* sign up container */}
