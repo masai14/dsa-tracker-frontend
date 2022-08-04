@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Footer } from '../../components';
+import { Navbar, Footer, Loader, Modal } from '../../components';
 import { BsLaptop } from "react-icons/bs";
+import { BiPencil } from "react-icons/bi";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
   const { id } = useParams();
+  const [modalActive, setModalActive] = useState(false);
   const { code, description, difficulty, intuition, isFav, isPublic, link, platform, solved, title, topic } = useSelector(store => store.question);
   const error = useSelector(store => store.error);
   // console.log(description && description.split("\n").map(el => el + "\n").join(""));
@@ -22,30 +24,18 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
     }
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
-  }, []);
-
-  // const [title, topic, description, link, platform, difficulty, intuition, code, solved, isFav, isPublic] = [
-  //   "Search in sorted and Rotated Array",
-  //   "Array,Binary Search",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //   "https://leetcode.com/",
-  //   "Leetcode",
-  //   "2",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in.",
-  //   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  //   true,
-  //   false,
-  //   false
-  // ];
-
+    }, 1500);
+  }, [id]);
   const [accordion, setAccordion] = useState(false);
 
   return (<>
-    {error.value ? <>{ error.message } <a href='/auth'>Redirect to login?</a></> :
+    {error.value ? <>{error.message} <a href='/auth' className='underline'>Redirect to login?</a></> :
       <div>
         <Navbar />
-        {isLoading ? <div className='text-9xl underline min-h-screen'>Loading</div> : <div className='min-h-screen flex mx-auto flex-wrap'>
+        {modalActive && <Modal setModalActive={setModalActive} questionId={id} question={{ code, description, difficulty, intuition, isFav, isPublic, link, platform, solved, title, topic }} />}
+        {isLoading ? <div className='min-h-screen w-48 m-auto pt-64'>
+          <Loader width="w-48" height="h-48" />
+        </div> : <div className='min-h-screen flex mx-auto flex-wrap'>
           <div className='mt-16 mb-10 w-full mx-4 flex flex-col px-4'>
 
             <div className='border rounded-lg bg-white my-4 p-6 shadow-dynamic flex flex-col'>
@@ -53,11 +43,12 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
                 <div className='flex gap-6'>
                   <h1 className='text-3xl font-semibold leading-[3rem] text-[#515151]'>{title}</h1>
                   {solved ? <div className='my-2 font-semibold text-sm leading-5 text-[#275808] bg-[#F4FFF2] p-3 rounded-lg'>Solved</div> : <div className='my-2 font-semibold text-sm leading-5 text-[#F88646] bg-[#FFFCB1] p-3 rounded-lg'>Not Solved Yet</div>}
-                  {isPublic ? <div className='my-2 font-semibold text-sm leading-5 text-[#275808] bg-[#F4FFF2] p-3 rounded-lg'>Public</div> : <div className='my-2 font-semibold text-sm leading-5 text-[#F88646] bg-[#FFFCB1] p-3 rounded-lg'>Not Public</div>}
                   {isFav ? <div className='my-2 font-semibold text-sm leading-5 text-[#275808] bg-[#F4FFF2] p-3 rounded-lg'>Favorite</div> : <div className='my-2 font-semibold text-sm leading-5 text-[#F88646] bg-[#FFFCB1] p-3 rounded-lg'>Not Favorite</div>}
+                  {isPublic ? <div className='my-2 font-semibold text-sm leading-5 text-[#275808] bg-[#F4FFF2] p-3 rounded-lg'>Public</div> : <div className='my-2 font-semibold text-sm leading-5 text-[#F88646] bg-[#FFFCB1] p-3 rounded-lg'>Not Public</div>}
                 </div>
-                <button className='w-32 h-14 rounded-lg p-4 bg-[#1072B9] text-white font-bold flex text-lg items-center align-center justify-around'>
-                  <span>Edit</span>
+                <button className='w-32 h-14 rounded-lg p-4 bg-[#1072B9] text-white font-bold flex text-lg items-center align-center px-8 gap-2' onClick={() => { setModalActive(true) }}>
+                    <BiPencil/>
+                    <span>Edit</span>
                 </button>
               </div>
 
@@ -94,7 +85,7 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
               </div>
 
 
-              <div id='code-accordion' className='mx-4 border rounded-lg' onClick={() => { setAccordion(!accordion) }}>
+              <div id='code-accordion' className='mx-4 border rounded-lg cursor-pointer' onClick={() => { setAccordion(!accordion) }}>
                 <div className={`px-4 py-3 ${accordion && 'border-b-2'} bg-gray-100 flex justify-between`}>
                   <span className='text-lg'>Code</span> <HiOutlineChevronDown className='text-2xl' />
                 </div>
@@ -115,7 +106,7 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
                       <BsLaptop className='w-6 h-6 mr-1' />
                       {platform.length <= 3 ? platform.toUpperCase() : platform[0].toUpperCase() + platform.substring(1).toLowerCase()}
                     </span>
-                    <span className='text-[#3B89C2] text-base font-bold' onClick={() => { window.open(link) }}>Attempt Problem</span>
+                    <span className='text-[#3B89C2] text-base font-bold cursor-pointer' onClick={() => { window.open(link) }}>Attempt Problem</span>
                   </div>
                 </div>
               </div>

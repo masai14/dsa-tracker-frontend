@@ -1,8 +1,49 @@
 import React, { useState } from 'react';
 import { avatar, logo } from "../data/icons";
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [activeUserMenu, setActiveUserMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchData, setSearchData] = useState([]);
+  const user = useSelector(store => store.user);
+  const { firstName, email } = useSelector(store => store.userDetails);
+  const navigate = useNavigate();
+
+  const searchDebounce = () => {
+    let inDebounce = null;
+    return () => {
+      if (searchQuery.length + 1 >= 3) {
+      // console.log(searchQuery.length);
+        clearTimeout(inDebounce);
+        inDebounce = setTimeout(() => {
+          getData();
+        }, 3000);
+      } else {
+        clearTimeout(inDebounce);
+        setSearchData([]);
+      }
+    }
+  }
+
+  async function getData() {
+    try {
+      let res = await axios.post("http://localhost:2345/question/search", {
+        key: searchQuery
+      }, {
+        headers: {
+          "authorization": `Bearer ${user}`
+        }
+      })
+      // console.log(res.data);
+      setSearchData([...res.data.questions]);
+    } catch (err) {
+      // console.log(err.message);
+    }
+  }
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 shadow-lg z-10 fixed w-full">
       <div className="flex flex-wrap justify-between items-center mx-12">
@@ -23,7 +64,10 @@ export const Navbar = () => {
                 <svg className="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <input type="text" id="search-navbar" className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
+              <input type="text" id="search-navbar" name="searchBar" className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value); searchDebounce()() }} />
+              <div className='absolute bg-white w-full'>{searchData && searchData.map((el, i) => {
+                return <div className='border-b-2 p-2 cursor-pointer' key={el._id + i} onClick={() => { setSearchData([]); navigate(`/question/${el._id}`)}}>{el.title}</div>
+              })}</div>
             </div>
             <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
               <span className="sr-only">Open menu</span>
@@ -43,18 +87,15 @@ export const Navbar = () => {
             {activeUserMenu &&
               <div className="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 block absolute top-12 right-8" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
                 <div className="py-3 px-4">
-                  <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                  <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                  <span className="block text-sm text-gray-900 dark:text-white">{firstName}</span>
+                  <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{email}</span>
                 </div>
                 <ul className="py-1" aria-labelledby="user-menu-button">
                   <li>
                     <a href="/profile" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
                   </li>
                   <li>
-                    <a href="/notyetimplemented" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                  </li>
-                  <li>
-                    <a href="/notyetimplemented" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                    <a href="/auth" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={() => { localStorage.removeItem("userTokenDSA") }}>Sign out</a>
                   </li>
                 </ul>
               </div>

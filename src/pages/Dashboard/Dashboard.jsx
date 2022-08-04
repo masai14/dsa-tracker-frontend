@@ -3,7 +3,7 @@ import { Sidebar, Navbar, Card, Footer, Modal, Loader } from '../../components';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getQuestions } from '../../redux/actions';
+import { getQuestions, getUserDetails } from '../../redux/actions';
 
 export const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -33,7 +33,9 @@ export const Dashboard = () => {
           "authorization": `Bearer ${user}`
         }
       }).then(res => res.json()).then(res => {
+        // console.log(res.message);
         if (res.message === true) {
+          dispatch(getUserDetails(user));
           dispatch(getQuestions(user, queryObj));
         } else {
           navigate('/auth')
@@ -56,7 +58,7 @@ export const Dashboard = () => {
     {isLoading ? <Loader /> :
       <section className='w-full'>
         <Navbar />
-        {modalActive && <Modal />}
+        {modalActive && <Modal setModalActive={ setModalActive} />}
         <div className='flex mx-auto flex-wrap'>
           <Sidebar queryObj={queryObj} setQueryObj={setQueryObj} />
           <div className='ml-[19rem] mt-16 mb-10 w-full mx-4 flex flex-col px-4'>
