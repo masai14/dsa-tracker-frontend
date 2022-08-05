@@ -78,7 +78,7 @@ export const getQuestions = (token, queryObj) => async (dispatch) => {
             'authorization': `Bearer ${token}`
         }
     })
-    console.log(res.data.platforms)
+    // console.log(res.data.platforms)
     dispatch({ type: GET_QUESTIONS, payload: res.data });
 }
 

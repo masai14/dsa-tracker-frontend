@@ -3,3 +3,4 @@
 - gather icons for platforms
 - Cloudinary image platform
 - Home Page for public questions
+- data validations

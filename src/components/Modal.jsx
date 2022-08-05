@@ -35,15 +35,28 @@ export const Modal = ({ setModalActive, questionId, question }) => {
         if (e.target.type === "checkbox") {
             // console.log(e.target.name, ":", e.target.checked);
             setData({ ...data, [e.target.name]: e.target.checked });
+        } else if (e.target.name === "platform") {
+            // console.log(e.target.name, ":", e.target.value);
+            setData({ ...data, [e.target.name]: e.target.value.toLowerCase().trim() });
         } else {
             // console.log(e.target.name, ":", e.target.value);
             setData({ ...data, [e.target.name]: e.target.value });
         }
     }
 
-    const handlePostQuestion = () => {
+    const handlePostQuestion = async () => {
         setIsLoading(true);
         // console.log(46, data);
+        // if (!data["platform"]) {
+        //     try {
+        //         let domain = (new URL(data["link"]));
+        //         // console.log(domain);
+        //         let hostname = domain.hostname.split(".");
+        //         setData({ ...data, "platform": hostname.length === 3 ? hostname[1].toLowerCase() : hostname[0].toLowerCase() });
+        //     } catch (err) {
+        //         console.log(err.message);
+        //     }
+        // }
         dispatch(postQuestion(user, data));
         setTimeout(() => {
             setIsLoading(false);
@@ -51,14 +64,37 @@ export const Modal = ({ setModalActive, questionId, question }) => {
         }, 3000)
     }
 
-    const handleUpdateQuestion = () => {
+    const checkData = () => {
+        for (let key in data) {
+            if (data[key].trim().length === 0) {
+                setData({ ...data, [key]: data[key].trim() });
+                return false;
+            }
+        }
+        // for (let key in data) {
+        //     setData({ ...data, [key]: data[key].trim() });
+        // }
+        return true;
+    }
+
+    const handleUpdateQuestion = async () => {
         setIsLoading(true);
-        // console.log(56, data);
+        // console.log(46, data);
+        // if (!data["platform"]) {
+        //     try {
+        //         let domain = (new URL(data["link"]));
+        //         // console.log(domain);
+        //         let hostname = domain.hostname.split(".");
+        //         setData({ ...data, "platform": hostname.length === 3 ? hostname[1].toLowerCase() : hostname[0].toLowerCase() });
+        //     } catch (err) {
+        //         console.log(err.message);
+        //     }
+        // }
         dispatch(updateQuestion(user, questionId, data));
         setTimeout(() => {
             setIsLoading(false);
             setModalActive(false);
-        }, 3000)
+        }, 3000);
     }
 
     useEffect(() => {
@@ -66,6 +102,22 @@ export const Modal = ({ setModalActive, questionId, question }) => {
             setData(question);
         }
     }, [])
+
+
+    const getDomain = () => {
+        console.log(data.link);
+        // if (data.link) {
+        //     console.log(data.link);
+        //     try {
+        //         let domain = (new URL(data["link"]));
+        //         // console.log(domain);
+        //         let hostname = domain.hostname.split(".");
+        //         setData({ ...data, "platform": hostname.length === 3 ? hostname[1].toLowerCase() : hostname[0].toLowerCase() });
+        //     } catch (err) {
+        //         console.log(err.message);
+        //     }
+        // }
+    }
 
     return (<>
         <div className='py-16 absolute bg-[rgba(0,0,0,0.5)] w-full z-[9] h-full mt-12'>
@@ -94,10 +146,12 @@ You may assume no duplicate exists in the array. Your algorithm’s runtime comp
                         <div className='grow'>
                             <label htmlFor="link" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Link <span className='text-red-800'>*</span></label>
                             <input value={data.link} onChange={(e) => { handleChange(e) }} type="text" name="link" id="link" placeholder="https://leetcode.com/problems/search-in-rotated-sorted-array/" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-12" required />
+                            {/*  onPaste={() => { getDomain() }}  */}
                         </div>
                         <div className='grow'>
                             <label htmlFor="platform" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Platform <span className='text-red-800'>*</span></label>
                             <input value={data.platform} onChange={(e) => { handleChange(e) }} type="text" name="platform" id="platform" placeholder="Leetcode" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white h-12" required />
+                            {/* onFocus={() => { getDomain() }}  */}
                         </div>
                         <div className='grow'>
                             <label htmlFor="difficulty" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Difficulty <span className='text-red-800'>*</span></label>
@@ -134,7 +188,7 @@ You may assume no duplicate exists in the array. Your algorithm’s runtime comp
                         </div>
                     </div>
 
-                    <button type="submit" className='p-2 px-8 rounded-lg text-white font-semibold text-lg bg-[#1072B9]' disabled={isLoading}>
+                    <button type="submit" id="submitButton" className='p-2 px-8 rounded-lg text-white font-semibold text-lg bg-[#1072B9]' disabled={isLoading}>
                         {isLoading ?
                             <>
                                 <Loader />
