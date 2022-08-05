@@ -11,6 +11,7 @@ export const Dashboard = () => {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
   const { questions, totalPages } = useSelector(store => store.data);
+  console.log(totalPages);
   const [modalActive, setModalActive] = useState(false);
   const [queryObj, setQueryObj] = useState({
     favourites: false,

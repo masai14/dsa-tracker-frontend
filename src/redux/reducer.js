@@ -1,5 +1,5 @@
-import { GET_QUESTIONS, ADD_USERTOKEN, GET_QUESTION, SET_ERROR, GET_USER_DETAILS} from "./actions";
-const initialState = { user: JSON.parse(localStorage.getItem("userTokenDSA")) || null, data: { questions: [], totalPages: 0, totalQuestions: 0, platforms: [] }, question: {}, error: { value: false, message: "no error" }, userDetails: {} };
+import { GET_QUESTIONS, ADD_USERTOKEN, GET_QUESTION, SET_ERROR, GET_USER_DETAILS } from "./actions";
+const initialState = { user: JSON.parse(localStorage.getItem("userTokenDSA")) || null, data: { questions: [], totalPages: 1, platforms: [] }, question: {}, error: { value: false, message: "no error" }, userDetails: {} };
 
 export const appReducer = (store = initialState, { type, payload }) => {
     switch (type) {
