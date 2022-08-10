@@ -15,7 +15,7 @@ export const Navbar = () => {
   const searchDebounce = () => {
     let inDebounce = null;
     return () => {
-      clearTimeout(inDebounce);
+      inDebounce && clearTimeout(inDebounce);
       inDebounce = setTimeout(() => {
         getData();
       }, 1000);
