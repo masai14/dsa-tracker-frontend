@@ -47,8 +47,8 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
                   {isPublic ? <div className='my-2 font-semibold text-sm leading-5 text-[#275808] bg-[#F4FFF2] p-3 rounded-lg'>Public</div> : <div className='my-2 font-semibold text-sm leading-5 text-[#F88646] bg-[#FFFCB1] p-3 rounded-lg'>Not Public</div>}
                 </div>
                 <button className='w-32 h-14 rounded-lg p-4 bg-[#1072B9] text-white font-bold flex text-lg items-center align-center px-8 gap-2' onClick={() => { setModalActive(true) }}>
-                    <BiPencil/>
-                    <span>Edit</span>
+                  <BiPencil />
+                  <span>Edit</span>
                 </button>
               </div>
 
@@ -89,9 +89,9 @@ export const Question = () => {//{ title, topic, link, difficulty, solved, platf
                 <div className={`px-4 py-3 ${accordion && 'border-b-2'} bg-gray-100 flex justify-between`}>
                   <span className='text-lg'>Code</span> <HiOutlineChevronDown className='text-2xl' />
                 </div>
-                {accordion && <div className='p-4'>{code && code.split("\n").map((el, i) => {
+                {accordion && <pre className='p-4'><code>{code && code.split("\n").map((el, i) => {
                   return <p key={`code${i}`}>{el}</p>;
-                })}</div>}
+                })}</code></pre>}
               </div>
 
 
